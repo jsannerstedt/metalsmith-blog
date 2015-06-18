@@ -3,6 +3,16 @@ article.excerpt {
     margin-bottom: 2.5rem;
 }
 
+article.excerpt h2 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+article.excerpt h2 a:hover {
+    text-decoration: underline;
+    color: inherit;
+}
+
 article.excerpt .date {
     display: block;
     font-size: 1.5rem;

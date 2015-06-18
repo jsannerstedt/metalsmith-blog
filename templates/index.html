@@ -1,22 +1,32 @@
 {% extends 'layout.html' %}
 
-{% block title %}
-{{ title }}
-{% endblock %}
 
 {% block content %}
+<div class="row">
+    <h1 class="blog-name">
+        {{ title }}
+        <span class="subtitle">{{ subtitle }}</span>
+    </h1>
+</div>
+<div class="row">
+    <div class="nine columns">
+        {% for post in collections.posts %}
+        <article class="excerpt">
+            <h2>
+                <a href="/{{ post.path}}">{{ post.title }}</a>
+                <span class="date">{{ post.date.toLocaleDateString() }}</span>
+            </h2>
 
-{% for post in collections.posts %}
-<article class="excerpt">
-    <h2>
-        <a href="/{{ post.path}}">{{ post.title }}</a>
-        <span class="date">{{ post.date.toLocaleDateString() }}</span>
-    </h2>
+            {{ post.excerpt|safe }}
+        </article>
+        {% endfor %}
 
-    {{ post.excerpt|safe }}
-</article>
-{% endfor %}
+        {{ contents|safe }}
 
-{{ contents|safe }}
+    </div>
+    <div class="three columns sidebar">
+        <h6>sidebar stuff</h6>
+    </div>
 
+</div>
 {% endblock %}

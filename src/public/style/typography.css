@@ -1,0 +1,17 @@
+@import url('//fonts.googleapis.com/css?family=Fira+Sans:400,500,700|Cardo:400,400italic,700');
+
+body {
+    font: 400 2em / 1.5em 'Cardo', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fira Sans', sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+h1 .subtitle {
+    color: grey;
+    display: block;
+    font-family: 'Cardo', serif;
+    font-size: 3rem;
+}

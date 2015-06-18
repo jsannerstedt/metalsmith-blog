@@ -1,13 +1,10 @@
 {% extends 'layout.html' %}
 
 
-{% block title %}
-{{ title }}
-{% endblock %}
-
 {% block content %}
-{{ contents|safe }}
+<h1>{{ title }}</h1>
 
+{{ contents|safe }}
 
 
 <ul>

@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>{% block title %}My Site{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="{{ description }}">
     {% block head %}
     <!--<script src="http://localhost:35729/livereload.js"></script>-->
@@ -20,22 +21,8 @@
 </nav>
 
 <div class="container">
-    <div class="row">
-         <div class="nine columns">
-        <h1>{% block title %}My Site{% endblock %}</h1>
-
-
-        {% block content %}
-        {% endblock %}
-         </div>
-        <div class="three columns sidebar">
-            <h6>Latest stuff</h6>
-
-            <h6>About me?</h6>
-
-            <h6>Something else</h6>
-        </div>
-    </div>
+    {% block content %}
+    {% endblock %}
 </div>
 </body>
 </html>
