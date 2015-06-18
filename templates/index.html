@@ -1,21 +1,10 @@
-<html>
-<head>
-    <title>{{ title }}</title>
-    <meta name="description" content="{{ description }}">
-    <script src="http://localhost:35729/livereload.js"></script>
-</head>
-<body>
-<h1>{{ title }}</h1>
+{% extends 'layout.html' %}
 
-<p>{{ description }}</p>
+{% block title %}
+{{ title }}
+{% endblock %}
 
-<ul>
-    {{#each collections.articles}}
-    <li><a href="{{ path}}">{{ title}}</a> </li>
-    {{/each}}
-</ul>
 
-{{{ contents }}}
-
-</body>
-</html>
+{% block content %}
+{{ contents|safe }}
+{% endblock %}

@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>{% block title %}My Site{% endblock %}</title>
+    <meta name="description" content="{{ description }}">
+    {% block head %}
+    <!--<script src="http://localhost:35729/livereload.js"></script>-->
+    {% endblock %}
+</head>
+<body>
+
+<header>
+    <h1>{% block title %}My Site{% endblock %}</h1>
+
+
+    <nav>
+        <a href="/">Home</a>
+
+        {% for item in collections.nav %}
+        <a href="/{{ item.path }}">{{ item.title }}</a>
+        {% endfor %}
+    </nav>
+
+
+</header>
+
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
