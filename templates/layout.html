@@ -5,27 +5,37 @@
     {% block head %}
     <!--<script src="http://localhost:35729/livereload.js"></script>-->
     {% endblock %}
+    <link rel="stylesheet" href="/style/main.css"/>
 </head>
 <body>
 
-<header>
-    <h1>{% block title %}My Site{% endblock %}</h1>
 
-
-    <nav>
+<nav>
+    <div class="container">
         <a href="/">Home</a>
-
         {% for item in collections.nav %}
         <a href="/{{ item.path }}">{{ item.title }}</a>
         {% endfor %}
-    </nav>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+         <div class="nine columns">
+        <h1>{% block title %}My Site{% endblock %}</h1>
 
 
-</header>
+        {% block content %}
+        {% endblock %}
+         </div>
+        <div class="three columns sidebar">
+            <h6>Latest stuff</h6>
 
+            <h6>About me?</h6>
 
-{% block content %}
-{% endblock %}
-
+            <h6>Something else</h6>
+        </div>
+    </div>
+</div>
 </body>
 </html>

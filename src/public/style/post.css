@@ -1,0 +1,10 @@
+article.excerpt {
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 2.5rem;
+}
+
+article.excerpt .date {
+    display: block;
+    font-size: 1.5rem;
+    color: grey;
+}

@@ -4,7 +4,19 @@
 {{ title }}
 {% endblock %}
 
-
 {% block content %}
+
+{% for post in collections.posts %}
+<article class="excerpt">
+    <h2>
+        <a href="/{{ post.path}}">{{ post.title }}</a>
+        <span class="date">{{ post.date.toLocaleDateString() }}</span>
+    </h2>
+
+    {{ post.excerpt|safe }}
+</article>
+{% endfor %}
+
 {{ contents|safe }}
+
 {% endblock %}

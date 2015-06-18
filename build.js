@@ -13,6 +13,7 @@ var collections = require('metalsmith-collections');
 var watch = require('metalsmith-watch');
 var serve = require('metalsmith-serve');
 var branch = require('metalsmith-branch');
+var excerpts = require('metalsmith-excerpts');
 
 Metalsmith(__dirname)
     .use(collections({
@@ -24,6 +25,8 @@ Metalsmith(__dirname)
         nav: {}
     }))
     .use(markdown())
+    .use(excerpts())
+
     .use(branch('pages/**.html')
         .use(permalinks({
             pattern: "./:title",
@@ -36,7 +39,7 @@ Metalsmith(__dirname)
     .use(staticFiles({src: 'public', dest: ''}))
     .use(concat({files: 'public/style/**/*.css', output: 'style/main.css'}))
     .use(template('swig'))
-    .use(serve())
+    //.use(serve())
     //.use(watch({
     //    paths: {
     //        //"${source}/**/*": true, // every changed files will trigger a rebuild of themselves
