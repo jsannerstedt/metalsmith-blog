@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block nav %}
+<a href="/">Home</a>
+{% endblock %}
+
+
+{% block content %}
+<article class="post">
+    <h1>
+        {{ title }}
+        {% if date %}
+        <span class="date">{{ date.toLocaleDateString() }}</span>
+        {% endif %}
+    </h1>
+
+    {{ contents|safe }}
+</article>
+{% endblock %}

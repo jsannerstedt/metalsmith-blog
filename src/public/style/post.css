@@ -1,3 +1,9 @@
+article.post h1 {
+    margin: 40px 0;
+}
+
+
+
 article.excerpt {
     border-bottom: 1px solid lightgrey;
     margin-bottom: 2.5rem;
@@ -13,7 +19,7 @@ article.excerpt h2 a:hover {
     color: inherit;
 }
 
-article.excerpt .date {
+article .date {
     display: block;
     font-size: 1.5rem;
     color: grey;

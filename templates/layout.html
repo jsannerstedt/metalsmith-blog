@@ -12,12 +12,8 @@
 
 
 <nav>
-    <div class="container">
-        <a href="/">Home</a>
-        {% for item in collections.nav %}
-        <a href="/{{ item.path }}">{{ item.title }}</a>
-        {% endfor %}
-    </div>
+    {% block nav %}
+    {% endblock %}
 </nav>
 
 <div class="container">

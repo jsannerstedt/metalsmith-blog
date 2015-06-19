@@ -1,7 +1,7 @@
 ---
 title: Design
 date: 2015-06-18
-template: post.html
+template: article.html
 ---
 So going with this bare metal approach, I have no real starting point for the design. So off to the google machine for inspiration. I want something really simple to start with, just a header, some links and a layout for posts.
  

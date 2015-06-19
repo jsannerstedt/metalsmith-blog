@@ -1,7 +1,7 @@
 ---
 title: About me
 collection: nav
-template: about.html
+template: article.html
 ---
 
 Some random story
