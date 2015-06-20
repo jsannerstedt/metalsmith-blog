@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block nav %}
+<a href="/">Home</a>
+{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+{{ contents|safe }}
+
+{% for post in pagination.files %}
+{% include "./partials/excerpt.html" %}
+{% endfor %}
+
+<nav>
+
+    {% if pagination.previous %}
+    <a href="/{{ pagination.previous.path }}">Previous</a>
+    {% endif %}
+    {% if pagination.next %}
+    <a href="/{{ pagination.next.path }}">Next</a>
+    {% endif %}
+</nav>
+
+{% endblock %}

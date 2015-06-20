@@ -3,6 +3,7 @@
 
 {% block nav %}
 <div class="u-pull-right">
+    <a href="/archive/1">Archive</a>
     {% for item in collections.nav %}
     <a href="/{{ item.path }}">{{ item.title }}</a>
     {% endfor %}

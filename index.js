@@ -13,7 +13,7 @@ var collections = require('metalsmith-collections');
 var branch = require('metalsmith-branch');
 var excerpts = require('metalsmith-excerpts');
 var browserSync = require('browser-sync');
-var paginate = require('metalsmith-paginate');
+var paginate = require('metalsmith-pagination');
 
 browserSync({
     server: "build",
@@ -32,7 +32,7 @@ function build(callback) {
         }))
         .use(collections({
             posts: {
-                pattern: 'posts/**.md',
+                pattern: 'posts/**/*.md',
                 sortBy: 'date',
                 reverse: true
             },
@@ -42,22 +42,29 @@ function build(callback) {
         .use(excerpts())
 
 
-
-
-        .use(paginate({
-            perPage: 2,
-            path: 'archive/page'
-        }))
-
         .use(branch('pages/**.html')
             .use(permalinks({
                 pattern: "./:title",
                 relative: false
             })))
-        .use(branch('posts/**.html')
+        .use(branch('posts/**/*.html')
             .use(permalinks({
                 pattern: 'posts/:title'
             })))
+
+
+        .use(paginate({
+            "collections.posts": {
+                perPage: 5,
+                template: 'archive.html',
+                path: 'archive/:num/index.html',
+                first: 'archive/index.html',
+                pageMetadata: {
+                    title: 'Archive'
+                }
+            }
+        }))
+
         .use(staticFiles({src: 'public', dest: ''}))
         .use(concat({files: 'public/style/**/*.css', output: 'style/main.css'}))
         .use(template('swig'))
