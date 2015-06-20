@@ -10,45 +10,50 @@ var markdown = require('metalsmith-markdown');
 var permalinks = require('metalsmith-permalinks');
 var template = require('metalsmith-templates');
 var collections = require('metalsmith-collections');
-var watch = require('metalsmith-watch');
-var serve = require('metalsmith-serve');
 var branch = require('metalsmith-branch');
 var excerpts = require('metalsmith-excerpts');
+var browserSync = require('browser-sync');
 
-Metalsmith(__dirname)
-    .use(collections({
-        posts: {
-            pattern: 'posts/**.md',
-            sortBy: 'date',
-            reverse: true
-        },
-        nav: {}
-    }))
-    .use(markdown())
-    .use(excerpts())
 
-    .use(branch('pages/**.html')
-        .use(permalinks({
-            pattern: "./:title",
-            relative: false
-        })))
-    .use(branch('posts/**.html')
-        .use(permalinks({
-            pattern: 'posts/:title'
-        })))
-    .use(staticFiles({src: 'public', dest: ''}))
-    .use(concat({files: 'public/style/**/*.css', output: 'style/main.css'}))
-    .use(template('swig'))
-    //.use(serve())
-    //.use(watch({
-    //    paths: {
-    //        //"${source}/**/*": true, // every changed files will trigger a rebuild of themselves
-    //        "templates/**/*": "**/*" // every templates changed will trigger a rebuild of all files
-    //    },
-    //    livereload: true
-    //}))
-    .build(function (err) {
-        if (err) {
-            throw err;
-        }
-    });
+
+browserSync({
+    server     : "build",
+    files      : ["src/**/*.md", "templates/**/*.html"],
+    middleware : function (req, res, next) {
+        build(next);
+    }
+});
+
+
+function build(callback) {
+    Metalsmith(__dirname)
+        .use(collections({
+            posts: {
+                pattern: 'posts/**.md',
+                sortBy: 'date',
+                reverse: true
+            },
+            nav: {}
+        }))
+        .use(markdown())
+        .use(excerpts())
+
+        .use(branch('pages/**.html')
+            .use(permalinks({
+                pattern: "./:title",
+                relative: false
+            })))
+        .use(branch('posts/**.html')
+            .use(permalinks({
+                pattern: 'posts/:title'
+            })))
+        .use(staticFiles({src: 'public', dest: ''}))
+        .use(concat({files: 'public/style/**/*.css', output: 'style/main.css'}))
+        .use(template('swig'))
+        .build(function (err) {
+            if (err) {
+                throw err;
+            }
+            callback();
+        });
+}

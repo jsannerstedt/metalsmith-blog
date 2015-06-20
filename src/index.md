@@ -1,5 +1,5 @@
 ---
 title: A random blog
-subtitle: Some subtitle
+subtitle: with a cool subtitle
 template: index.html
 ---

@@ -2,6 +2,7 @@
   "name": "static-site-example",
   "private": true,
   "dependencies": {
+    "browser-sync": "^2.7.12",
     "handlebars": "^2.0.0-alpha.2",
     "metalsmith": "^1.0.0",
     "metalsmith-branch": "0.0.4",
