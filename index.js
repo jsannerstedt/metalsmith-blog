@@ -13,13 +13,12 @@ var collections = require('metalsmith-collections');
 var branch = require('metalsmith-branch');
 var excerpts = require('metalsmith-excerpts');
 var browserSync = require('browser-sync');
-
-
+var paginate = require('metalsmith-paginate');
 
 browserSync({
-    server     : "build",
-    files      : ["src/**/*.md", "templates/**/*.html"],
-    middleware : function (req, res, next) {
+    server: "build",
+    files: ["src/**/*.md", "templates/**/*.html"],
+    middleware: function (req, res, next) {
         build(next);
     }
 });
@@ -27,6 +26,10 @@ browserSync({
 
 function build(callback) {
     Metalsmith(__dirname)
+        .use(findTemplate({
+            pattern: 'posts',
+            templateName: 'article.html'
+        }))
         .use(collections({
             posts: {
                 pattern: 'posts/**.md',
@@ -37,6 +40,14 @@ function build(callback) {
         }))
         .use(markdown())
         .use(excerpts())
+
+
+
+
+        .use(paginate({
+            perPage: 2,
+            path: 'archive/page'
+        }))
 
         .use(branch('pages/**.html')
             .use(permalinks({
@@ -57,3 +68,19 @@ function build(callback) {
             callback();
         });
 }
+
+function findTemplate(config) {
+    var pattern = new RegExp(config.pattern);
+
+    return function (files, metalsmith, done) {
+        for (var file in files) {
+            if (pattern.test(file)) {
+                var _f = files[file];
+                if (!_f.template) {
+                    _f.template = config.templateName;
+                }
+            }
+        }
+        done();
+    };
+};

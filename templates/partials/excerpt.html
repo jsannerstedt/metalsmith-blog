@@ -1,0 +1,7 @@
+<article class="excerpt">
+    <h2>
+        <a href="/{{ post.path}}">{{ post.title }}</a>
+    </h2>
+    {{ post.excerpt|safe }}
+    <span class="date">{{ post.date.toLocaleDateString() }}</span>
+</article>

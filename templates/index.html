@@ -20,25 +20,14 @@
 <div class="row">
     <div class="nine columns">
         {% for post in collections.posts %}
-        <article class="excerpt">
-            <h2>
-                <a href="/{{ post.path}}">{{ post.title }}</a>
-            </h2>
-
-            {{ post.excerpt|safe }}
-            <span class="date">{{ post.date.toLocaleDateString() }}</span>
-
-        </article>
+            {% include "./partials/excerpt.html" %}
         {% endfor %}
-
         {{ contents|safe }}
-
     </div>
     <div class="three columns sidebar">
         <div class="container">
             <h6>sidebar stuff</h6>
         </div>
     </div>
-
 </div>
 {% endblock %}
