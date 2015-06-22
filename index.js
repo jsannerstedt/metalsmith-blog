@@ -14,10 +14,11 @@ var branch = require('metalsmith-branch');
 var excerpts = require('metalsmith-excerpts');
 var browserSync = require('browser-sync');
 var paginate = require('metalsmith-pagination');
+var cleanCss = require('metalsmith-clean-css');
 
 browserSync({
     server: "build",
-    files: ["src/**/*.md", "templates/**/*.html"],
+    files: ["src/**/*.md", "templates/**/*.html", "src/public/**/*"],
     middleware: function (req, res, next) {
         build(next);
     }
@@ -67,6 +68,9 @@ function build(callback) {
 
         .use(staticFiles({src: 'public', dest: ''}))
         .use(concat({files: 'public/style/**/*.css', output: 'style/main.css'}))
+        .use(cleanCss({
+            files: 'style/main.css'
+        }))
         .use(template('swig'))
         .build(function (err) {
             if (err) {

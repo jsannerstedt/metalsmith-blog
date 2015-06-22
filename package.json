@@ -6,6 +6,7 @@
     "handlebars": "^2.0.0-alpha.2",
     "metalsmith": "^1.0.0",
     "metalsmith-branch": "0.0.4",
+    "metalsmith-clean-css": "^2.0.0",
     "metalsmith-collections": "^0.7.0",
     "metalsmith-concat": "^2.0.0",
     "metalsmith-excerpts": "^1.0.0",
